@@ -15,13 +15,24 @@ This solution uses the following dependencies:
 ## Setup
 ### Configure Keycloak
 1. Start AppHost.
-2. Login in Keycloak with default login (admin:@admin!). **If in Production, change this password!!! Generate a random one and save it safely (on a password manager for example).**
+2. Login in Keycloak with default login (admin:@admin!). **If in Production, change this password!!! Generate a random one and save it safely (in a password manager for example).**
 3. Create a realm (default name "AspireKeycloak")
-4. Create a new client (default name "api-services") with Client ID/Secret Authentication 
-and save client ID and SECRET aside
-5. Create a new user if needed
-6. Open your project (AppHost) local secrets and set
-   - KEYCLOAK_REALM (default name "AspireKeycloak")
-   - KEYCLOAK_CLIENT_ID (default name "api-services")
-   - KEYCLOAK_CLIENT_SECRET
+4. Create a new user if needed
+5. Create new clients: api-client, front-client, grafana-client
+6. Add the client secrets to your AppHost project local secrets:
+   - Keycloak:BackClientSecret (default name "AspireKeycloak")
+   - Keycloak:BackFrontSecret (default name "api-services")
+   - Keycloak:BackGrafanaSecret
 7. Restart the AppHost. The front and the back should be configured for authentication!
+
+## First Deployment to Production
+### First deployment
+
+### Configure Keycloak
+
+### After first deployment and configuration
+1. For non-secrets, fill out AppHost appsettings.Production.json (NON-SECRET ONLY)
+2. For secrets, add them in your github secrets and ensure it is deployed (see .github/deploy.yml)
+3. Redeploy. 
+
+To check if everything worked, you should be able to see the new secrets on your new Aspire container.
