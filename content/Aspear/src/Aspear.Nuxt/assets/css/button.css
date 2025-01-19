@@ -1,0 +1,43 @@
+@layer components {
+    button[data-variant='text'],
+    button[data-variant='outline'],
+    button[data-variant='fill'] {
+        @apply rounded-md px-3 py-2 text-sm font-semibold;
+    }
+    button[data-variant='text']:not(.hidden),
+    button[data-variant='outline']:not(.hidden),
+    button[data-variant='fill']:not(.hidden) {
+        @apply inline-flex items-center;
+    }
+    button .iconify {
+        @apply h-5 w-5 text-inherit;
+    }
+
+    button[data-color='primary'] {
+        --button-color: #4f46e5;
+        --button-color-hover: #6366f1;
+        --button-color-contrast: white;
+    }
+
+    button[data-color='danger'] {
+        --button-color: #dc2626;
+        --button-color-hover: #ef4444;
+        --button-color-contrast: white;
+    }
+
+    button[data-variant='text'] {
+        @apply hover:bg-white/25 font-medium text-[var(--button-color)] hover:text-[var(--button-color-hover)];
+    }
+
+    button[data-variant='outline'] {
+        @apply bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 shadow-sm;
+    }
+
+    button[data-variant='fill'] {
+        @apply shadow-sm;
+    }
+    button[data-variant='fill'][data-color='primary'] {
+        @apply bg-[var(--button-color)] hover:bg-[var(--button-color-hover)] text-[var(--button-color-contrast)]
+            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-color)];
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "DumbTechLion",
+  "identity": "Aspear",
+  "name": "Aspear",
+  "shortName": "aspear",
+  "sourceName":"Aspear",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "classifications": ["Common", "Aspire", "ASP.NET", "Vue", "Nuxt" ],
+  "guids": [
+    "05C4EA38-D478-4345-9F03-7CCC0F500F4B",
+    "1E90B984-70F1-4E49-B204-3036A1E4C0C6",
+    "49852832-1679-4016-A8D9-7BB0E45990F5",
+    "58A45A5B-0C4C-4E53-83B8-B6EDA773063C",
+    "5D829F5A-4347-4CE7-9786-F857708D017D",
+    "62F58658-13FE-4BAF-B789-2F77FBE7A8E7",
+    "8869DC0B-8033-42B6-B559-1CD5B0F17CDD",
+    "9A19103F-16F7-4668-BE54-9A1E7A4F7556",
+    "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC"
+  ],
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ 
+            ".vs/**", 
+            ".git/**", 
+            ".idea/**", 
+            ".template_config/**",
+            "**/node_modules/**",
+            "**/.nuxt",
+            "**/.vscode/**"
+          ]
+        }
+      ]
+    }
+  ],
+  "preferNameDirectory": true
+}

@@ -1,0 +1,17 @@
+@layer components {
+    table[role='simple'] {
+        @apply min-w-full divide-y divide-gray-300;
+    }
+    table[role='simple'] th {
+        @apply px-3 py-4 text-left text-sm font-semibold text-gray-900 sm:pl-3;
+    }
+    table[role='simple'] tbody {
+        @apply bg-white;
+    }
+    table[role='simple'] tbody tr {
+        @apply even:bg-gray-50;
+    }
+    table[role='simple'] tbody tr td {
+        @apply px-3 py-4 text-sm;
+    }
+}

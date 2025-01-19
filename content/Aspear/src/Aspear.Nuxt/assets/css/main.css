@@ -1,0 +1,19 @@
+@import './button.css';
+@import './chip.css';
+@import './table.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h3 {
+        @apply text-base font-semibold leading-7 text-gray-900;
+    }
+}
+
+@layer components {
+    .chip {
+        @apply inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10;
+    }
+}
