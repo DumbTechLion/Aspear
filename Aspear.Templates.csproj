@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
+    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\node_modules\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
 
