@@ -15,7 +15,11 @@ This solution uses the following dependencies:
 ## Setup
 ### Configure Databases
 1. Start AppHost
-2. 
+2. On Aspire Dashboard, access to pgsql-admin URL.
+3. On the pgsql server, create two databases:
+- app-db
+- keycloak-db
+4. Restart AppHost
 
 ### Configure Keycloak
 1. Start AppHost.
