@@ -13,6 +13,10 @@ This solution uses the following dependencies:
 - Azure Storage (with emulator on local)
 
 ## Setup
+### Configure Databases
+1. Start AppHost
+2. 
+
 ### Configure Keycloak
 1. Start AppHost.
 2. Login in Keycloak with default login (admin:@admin!). **If in Production, change this password!!! Generate a random one and save it safely (in a password manager for example).**
@@ -42,3 +46,9 @@ This solution uses the following dependencies:
 3. Redeploy. 
 
 To check if everything worked, you should be able to see the new secrets on your new Aspire container.
+
+## Troubleshoot
+### Deprecation warnings as errors when starting AppHost
+This error is due to a common package deprecation since node 21.
+
+Use nvm to target node 20 in your IDE terminal. It will take the latest node 20.
