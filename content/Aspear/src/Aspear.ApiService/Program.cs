@@ -12,7 +12,7 @@ builder.Services
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;  
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;  
     })
-    .AddKeycloakJwtBearer(ServiceNames.Keycloak, realm: "AspireKeycloak", options =>
+    .AddKeycloakJwtBearer(ServiceNames.Keycloak, realm: builder.Configuration["KEYCLOAK_REALM"]!, options =>
     {
         if (builder.Environment.IsDevelopment())
         {

@@ -21,7 +21,7 @@ export default oauthKeycloakEventHandler({
   },
   // Optional, will return a json error and 401 status code by default
   onError(event, error) {
-    console.error("Auth0 OAuth error:", error);
+    console.error("Keycloak OAuth error:", error);
     return sendRedirect(event, "/");
   },
 });

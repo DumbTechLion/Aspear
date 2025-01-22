@@ -16,14 +16,20 @@ This solution uses the following dependencies:
 ### Configure Keycloak
 1. Start AppHost.
 2. Login in Keycloak with default login (admin:@admin!). **If in Production, change this password!!! Generate a random one and save it safely (in a password manager for example).**
-3. Create a realm (default name "AspireKeycloak")
-4. Create a new user if needed
-5. Create new clients: api-client, front-client, grafana-client
-6. Add the client secrets to your AppHost project local secrets:
-   - Keycloak:BackClientSecret (default name "AspireKeycloak")
-   - Keycloak:BackFrontSecret (default name "api-services")
-   - Keycloak:BackGrafanaSecret
-7. Restart the AppHost. The front and the back should be configured for authentication!
+3. Go to Aspear realm
+4. Create a new admin user with realm-admin role
+5. Clients should be already configured (!!!!In production, regenerate Credentials like Client Secrets!!!!)
+
+### Configure Grafana
+1. Log into Grafana with default credentials (admin:admin)
+2. Change default password to whatever you want
+3. Log out
+4. Log in with Keycloak as the recently created admin on Keycloak (in Realm Aspear)
+5. Log out
+6. Log in with the Grafana admin account
+7. Go to Users and go to Keycloak admin
+8. Set it as Grafana Admin
+9. (Optional) You can now delete the default Grafana Admin if needed (or in Production)
 
 ## First Deployment to Production
 ### First deployment
