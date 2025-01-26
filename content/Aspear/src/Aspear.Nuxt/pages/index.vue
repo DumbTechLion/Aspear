@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 definePageMeta({
   layoutMetadata: {
-    title: "Main",
+    title: "Accueil | Echo Citoyen",
   },
 });
 </script>

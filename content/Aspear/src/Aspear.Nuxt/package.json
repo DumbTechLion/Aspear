@@ -19,7 +19,7 @@
     "chart.js": "^4.4.7",
     "chartjs-plugin-datalabels": "^2.2.0",
     "nuxt": "^3.15.2",
-    "nuxt-auth-utils": "^0.5.8",
+    "nuxt-auth-utils": "^0.5.9",
     "nuxt-authorization": "^0.3.2",
     "nuxt-time": "^1.0.3",
     "vue": "^3.5.13",

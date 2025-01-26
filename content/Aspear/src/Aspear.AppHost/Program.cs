@@ -5,6 +5,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var realmName = builder.Configuration["Keycloak:Realm"];
 var keycloakUrl = builder.Configuration["Keycloak:PublicUrl"];
+var keycloakUsername = builder.AddParameter("keycloakUsername", "admin", true);
+var keycloakPassword = builder.AddParameter("keycloakPassword", "@admin!", false);
+
 var grafanaUrl = builder.Configuration["Grafana:PublicUrl"];
 
 // Storages
@@ -35,9 +38,8 @@ var keycloakDb = pgsql
     .AddDatabase(ServiceNames.KeycloakDatabase);
 
 // Identity
-var keycloakUsername = builder.AddParameter("keycloakUsername", "admin", true);
-var keycloakPassword = builder.AddParameter("keycloakPassword", "@admin!", false);
 var keycloak = builder.AddKeycloak(ServiceNames.Keycloak, port: 36008, adminUsername: keycloakUsername, adminPassword: keycloakPassword)
+    .WithArgs("--verbose")
     .WithRealmImport("../Aspear.Keycloak/realms", true)
     .WithReference(keycloakDb)
     .WaitFor(pgsql)
@@ -55,22 +57,21 @@ var apiService = builder.AddProject<Projects.Aspear_ApiService>(ServiceNames.Api
     .WaitFor(messaging)
     .WaitFor(blobs)
     .WaitFor(keycloak)
-    .WithHttpEndpoint(port: 36001, name: "http")
-    .WithExternalHttpEndpoints()
+    .WithHttpEndpoint(port: 36001, name: "http", isProxied: false)
     .WithEnvironment("KEYCLOAK_REALM", realmName)
     .WithEnvironment("KEYCLOAK_CLIENT_ID", builder.Configuration["Keycloak:BackClientId"])
     .WithEnvironment("KEYCLOAK_CLIENT_SECRET", builder.Configuration["Keycloak:BackClientSecret"]);
-
 
 // Front-end
 var nuxt = builder.AddNpmApp(ServiceNames.Nuxt, "../Aspear.Nuxt", "dev")
     .WithReference(apiService)
     .WaitFor(apiService)
     .WaitFor(keycloak)
-    .WithExternalHttpEndpoints()
     .WithHttpEndpoint(port: 36010, env: "PORT")
-    .WithEnvironment("NUXT_OAUTH_KEYCLOAK_REALM", realmName)
+    .WithExternalHttpEndpoints()
+    .WithEnvironment("NUXT_API_URL", apiService.Resource.GetEndpoint("http"))
     .WithEnvironment("NUXT_OAUTH_KEYCLOAK_SERVER_URL", keycloak.Resource.GetEndpoint("http"))
+    .WithEnvironment("NUXT_OAUTH_KEYCLOAK_REALM", realmName)
     .WithEnvironment("NUXT_OAUTH_KEYCLOAK_CLIENT_ID", builder.Configuration["Keycloak:FrontClientId"])
     .WithEnvironment("NUXT_OAUTH_KEYCLOAK_CLIENT_SECRET", builder.Configuration["Keycloak:FrontClientSecret"])
     .PublishAsDockerFile();

@@ -21,9 +21,12 @@ export default defineNuxtConfig({
     vueI18n: "./i18n.config.ts",
   },
   openFetch: {
+    openAPITS: {
+      enum: true,
+    },
     clients: {
       api: {
-        baseURL: "/back",
+        baseURL: "/api",
       },
     },
   },

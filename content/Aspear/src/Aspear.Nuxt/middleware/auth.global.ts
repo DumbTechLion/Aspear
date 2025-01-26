@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async ({ path }) => {
   const { loggedIn, user } = useUserSession();
 
-  // if (!loggedIn.value && path !== "/auth/auth0") {
-  //   return navigateTo("/auth/auth0", { external: true });
+  // if (!loggedIn.value && path.startsWith("/profile")) {
+  //   return navigateTo("/auth/keycloak", { external: true });
   // }
 });
